@@ -6,8 +6,8 @@
     <title>Paqueterias GOS</title>
     <!-- Meta -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Landing page template for creative dashboard">
-    <meta name="keywords" content="Landing page template">
+    <meta name="description" content="Paqueterias GOS, llevamos tus paquetes a todas partes">
+    <meta name="keywords" content="Paqueterias GOS, llevamos tus paquetes a todas partes">
     <!-- Favicon icon -->
     <link rel="icon" href="/gospaqueterias/public/assets/images/logo GOS sin fondo.png" type="image/png" sizes="16x16">
     <!-- Bootstrap -->
@@ -158,7 +158,7 @@
                     <div class="flex-split">
                         <div class="f-left wow fadeInUp" data-wow-delay="0s">
                             <div class="left-content">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3732.9363812023284!2d-103.33894762371459!3d20.672167099928778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428b3d67b10b9bf%3A0x8749c69641dc5b92!2sC.%20Gigantes%2C%20San%20Juan%20de%20Dios%2C%20Guadalajara%2C%20Jal.!5e0!3m2!1ses!2smx!4v1695614107146!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3732.9363812023284!2d-103.33894762371459!3d20.672167099928778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428b3d67b10b9bf%3A0x8749c69641dc5b92!2sC.%20Gigantes%2C%20San%20Juan%20de%20Dios%2C%20Guadalajara%2C%20Jal.!5e0!3m2!1ses!2smx!4v1695614107146!5m2!1ses!2smx" class="map" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>
                         </div>
                         <div class="f-right wow fadeInUp" data-wow-delay="0.2s">
@@ -181,7 +181,7 @@
                         </div>
                         <div class="f-left">
                             <div class="left-content wow fadeInUp" data-wow-delay="0.3s">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.460040119163!2d-99.1277339237333!3d19.435722540579178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f93513f3ae95%3A0x6dbde7d99059d3c5!2sSan%20Antonio%20Tomatlan%20%26%20Cjon.%20Mixcalco%2C%20Centro%2C%2006020%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses!2smx!4v1695614699856!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.460040119163!2d-99.1277339237333!3d19.435722540579178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f93513f3ae95%3A0x6dbde7d99059d3c5!2sSan%20Antonio%20Tomatlan%20%26%20Cjon.%20Mixcalco%2C%20Centro%2C%2006020%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses!2smx!4v1695614699856!5m2!1ses!2smx" allowfullscreen="" class="map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>
                         </div>
                     </div>

@@ -2460,3 +2460,17 @@ label {
 			.contact-method a:active {
 				color: #53e3fb !important;
 			}
+
+			.map{
+				width:600px;
+				height:450px;
+				border:0;
+			}
+
+			@media screen and (max-width: 736px) {
+				.map{
+					width:400px;
+					height:300px;
+					border:0;
+				}
+			}
