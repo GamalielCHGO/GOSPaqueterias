@@ -621,6 +621,10 @@ body {
 
 
 .services-section {
+	background: var(--amarilloGosDegradado);
+}
+.services-section2
+{
 	background: var(--naranjaGosDegradado);
 }
 
@@ -799,6 +803,7 @@ body {
 	display: flex;
 	-webkit-flex-direction: column;
 	flex-direction: column;
+	background: var(--naranjaGosDegradado);
 }
 
 .features-section .f-left {

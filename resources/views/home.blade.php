@@ -164,7 +164,7 @@
                         <div class="f-right wow fadeInUp" data-wow-delay="0.2s">
                             <div class="right-content">
                                 <h2>Sucursal en Guadalajara</h2>
-                                <p>
+                                <p class="fs-2">
                                     Calle Gigantes 555 Colonia San Juan de Dios Guadalajra Jalisco
                                 </p>
                             </div>
@@ -194,22 +194,22 @@
                             <div class="testimonials owl-carousel owl-theme">
                                 <div class=""><img class="img-circle" src="/gospaqueterias/public/assets/images/bulto.png" alt="Client Testimonoal" />
                                     <div class="testimonial-text wow fadeInUp" data-wow-delay="0.2s">
-                                        <h3>Mercancia entregada en tiempo</h3>
+                                        <h3 class="fs-1">Mercancia entregada en tiempo</h3>
                                     </div>
                                 </div>
                                 <div class=""><img class="img-circle" src="/gospaqueterias/public/assets/images/bulto2.png" alt="Client Testimonoal" />
                                     <div class="testimonial-text">
-                                        <h3>Confianza y seguridad en cada uno de los envios</h3>
+                                        <h3 class="fs-1">Confianza y seguridad en cada uno de los envios</h3>
                                     </div>
                                 </div>
                                 <div class=""><img class="img-circle" src="/gospaqueterias/public/assets/images/bulto.png" alt="Client Testimonoal" />
                                     <div class="testimonial-text">
-                                        <h3>Recomendada por todos nuestros clientes</h3>
+                                        <h3 class="fs-1">Recomendada por todos nuestros clientes</h3>
                                     </div>
                                 </div>
                                 <div class=""><img class="img-circle" src="/gospaqueterias/public/assets/images/bulto2.png" alt="Client Testimonoal" />
                                     <div class="testimonial-text">
-                                        <h3>Satisfaccion total en el envio y cuidado de sus productos</h3>
+                                        <h3 class="fs-1">Satisfaccion total en el envio y cuidado de sus productos</h3>
                                     </div>
                                 </div>
                             </div>
@@ -330,7 +330,7 @@
 
 
 
-            <div class="services-section text-center" id="contactanos">
+            <div class="services-section2 text-center" id="contactanos">
                 <!-- Services section (small) with icons -->
                 <div class="container">
                     <div class="row  justify-content-md-center">
