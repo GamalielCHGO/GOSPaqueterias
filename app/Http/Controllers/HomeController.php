@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Envio;
+use App\Models\Sucursal;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,11 +25,27 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        
+        return view('home',[
+            'sucursales' => Sucursal::all(),
+        ]);
     }
 
     public function rastrear()
     {
         return view('rastrear');
     }
+    public function rastrearId(Request $request)
+    {
+        return view('rastrearId',[
+            'guia'=>Envio::where('guia',$request->guia)->first(),
+        ]);
+    }
+
+    public function terminos()
+    {
+        return view('terminos');
+    }
+
+
 }

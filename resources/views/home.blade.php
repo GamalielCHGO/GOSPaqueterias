@@ -1,80 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="utf-8">
-    <title>Paqueterias GOS</title>
-    <!-- Meta -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Paqueterias GOS, llevamos tus paquetes a todas partes">
-    <meta name="keywords" content="Paqueterias GOS, llevamos tus paquetes a todas partes">
-    <!-- Favicon icon -->
-    <link rel="icon" href="/gospaqueterias/public/assets/images/logo GOS sin fondo.png" type="image/png" sizes="16x16">
-    <!-- Bootstrap -->
-    <link href="/gospaqueterias/public/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
-    <!-- Font -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,700,600" rel="stylesheet" type="text/css">
-    <!-- Animate CSS -->
-    <link rel="stylesheet" href="/gospaqueterias/public/assets/css/animate.css">
-    <!-- Owl Carousel -->
-    <link rel="stylesheet" href="/gospaqueterias/public/assets/css/owl.carousel.css">
-    <link rel="stylesheet" href="/gospaqueterias/public/assets/css/owl.theme.css">
-    <!-- Magnific Popup -->
-    <link rel="stylesheet" href="/gospaqueterias/public/assets/css/magnific-popup.css">
-    <!-- Full Page Animation -->
-    <link rel="stylesheet" href="/gospaqueterias/public/assets/css/animsition.min.css">
-    <!-- Ionic Icons -->
-    <link rel="stylesheet" href="/gospaqueterias/public/assets/css/ionicons.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <!-- Main Style css -->
-    <link href="/gospaqueterias/public/assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <style>
-        .imgFondo{
-            background-image: url('/gospaqueterias/public/assets/images/wave.svg' );
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-    </style>
-</head>
+@section('content')
 
-<body>
-
-    <div class="wrapper animsition" data-animsition-in-class="fade-in" data-animsition-in-duration="1000" data-animsition-out-class="fade-out" data-animsition-out-duration="1000">
-        <div class="container">
-             <nav class="navbar navbar-expand-lg navbar-light navbar-default navbar-fixed-top" role="navigation">
-                <div class="container">
-                    <a class="navbar-brand page-scroll" href="#main"><img src="/gospaqueterias/public/assets/images/GOSresizeBG.png" alt="adminity Logo"/></a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav me-auto">
-                        </ul>
-                        <ul class="navbar-nav my-2 my-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link page-scroll" href="#main">Inicio</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link page-scroll" href="{{route("rastrear")}}">Rastrear</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link page-scroll" href="#precios">Precios</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link page-scroll" href="#ubicaciones">Ubicaciones</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link page-scroll" href="#contactanos">Contactanos</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Iniciar sesion</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
         <div class="main" id="main">
             <!-- Main Section-->
             <div class="hero-section app-hero imgFondo">
@@ -92,7 +19,7 @@
                             </div>
                             <div class="col-md-12">
                                 <div class="hero-image">
-                                    <img class="img-fluid" src="/gospaqueterias/public/assets/images/app_hero_1.png" alt="" />
+                                    <img class="img-fluid" src="/public/assets/images/app_hero_1.png" alt="" />
                                 </div>
                             </div>
                         </div>
@@ -116,7 +43,7 @@
                                 <div class="row">
                                     <div class="col-sm-4 wow fadeInUp" data-wow-delay="0.2s">
                                         <div class="services-icon">
-                                            <img src="/gospaqueterias/public/assets/logos/icon1.png" height="60" width="60" alt="Service" />
+                                            <img src="/public/assets/logos/icon1.png" height="60" width="60" alt="Service" />
                                         </div>
                                         <div class="services-description">
                                             <h1>Logistica empresarial</h1>
@@ -127,7 +54,7 @@
                                     </div>
                                     <div class="col-sm-4 wow fadeInUp" data-wow-delay="0.3s">
                                         <div class="services-icon">
-                                            <img class="icon-2" src="/gospaqueterias/public/assets/logos/icon2.png" height="60" width="60" alt="Service" />
+                                            <img class="icon-2" src="/public/assets/logos/icon2.png" height="60" width="60" alt="Service" />
                                         </div>
                                         <div class="services-description">
                                             <h1>Rapida y segura</h1>
@@ -138,7 +65,7 @@
                                     </div>
                                     <div class="col-sm-4 wow fadeInUp" data-wow-delay="0.4s">
                                         <div class="services-icon">
-                                            <img class="icon-3" src="/gospaqueterias/public/assets/logos/icon4.png" height="60" width="60" alt="Service" />
+                                            <img class="icon-3" src="/public/assets/logos/icon4.png" height="60" width="60" alt="Service" />
                                         </div>
                                         <div class="services-description">
                                             <h1>Servicio economico</h1>
@@ -155,36 +82,27 @@
             </div>
             <div class="flex-features" id="ubicaciones">
                 <div class="container">
-                    <div class="flex-split">
-                        <div class="f-left wow fadeInUp" data-wow-delay="0s">
-                            <div class="left-content">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3732.9363812023284!2d-103.33894762371459!3d20.672167099928778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8428b3d67b10b9bf%3A0x8749c69641dc5b92!2sC.%20Gigantes%2C%20San%20Juan%20de%20Dios%2C%20Guadalajara%2C%20Jal.!5e0!3m2!1ses!2smx!4v1695614107146!5m2!1ses!2smx" class="map" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    @forelse ($sucursales as $item)
+                        <div class="flex-split">
+                            <div class="f-left wow fadeInUp" data-wow-delay="0s">
+                                <div class="left-content">
+                                    {!!$item->link!!}
+                                </div>
+                            </div>
+                            <div class="f-right wow fadeInUp" data-wow-delay="0.2s">
+                                <div class="right-content">
+                                    <h2>{{$item->nombre}}</h2>
+                                    <p class="fs-2">
+                                        {{$item->direccion}}
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                        <div class="f-right wow fadeInUp" data-wow-delay="0.2s">
-                            <div class="right-content">
-                                <h2>Sucursal en Guadalajara</h2>
-                                <p class="fs-2">
-                                    Calle Gigantes 555 Colonia San Juan de Dios Guadalajra Jalisco
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flex-split">
-                        <div class="f-right">
-                            <div class="right-content wow fadeInUp" data-wow-delay="0.2s">
-                                <h2>Sucursal en el centro de la ciudad de Mexico</h2>
-                                <p>
-                                    Av circunvalacion entre calle mixcalco y calle san antonio tomatiano
-                                </p>
-                            </div>
-                        </div>
-                        <div class="f-left">
-                            <div class="left-content wow fadeInUp" data-wow-delay="0.3s">
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.460040119163!2d-99.1277339237333!3d19.435722540579178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1f93513f3ae95%3A0x6dbde7d99059d3c5!2sSan%20Antonio%20Tomatlan%20%26%20Cjon.%20Mixcalco%2C%20Centro%2C%2006020%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!5e0!3m2!1ses!2smx!4v1695614699856!5m2!1ses!2smx" allowfullscreen="" class="map" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            </div>
-                        </div>
-                    </div>
+                    @empty
+                        No hay ninguna sucursal
+                    @endforelse
+
+                    
                 </div>
             </div>
             <div class="testimonial-section" id="reviews">
@@ -192,22 +110,22 @@
                     <div class="row text-center">
                         <div class="col-md-12">
                             <div class="testimonials owl-carousel owl-theme">
-                                <div class=""><img class="img-circle" src="/gospaqueterias/public/assets/images/bulto.png" alt="Client Testimonoal" />
+                                <div class=""><img class="img-circle" src="/public/assets/images/bulto.png" alt="Client Testimonoal" />
                                     <div class="testimonial-text wow fadeInUp" data-wow-delay="0.2s">
                                         <h3 class="fs-1">Mercancia entregada en tiempo</h3>
                                     </div>
                                 </div>
-                                <div class=""><img class="img-circle" src="/gospaqueterias/public/assets/images/bulto2.png" alt="Client Testimonoal" />
+                                <div class=""><img class="img-circle" src="/public/assets/images/bulto2.png" alt="Client Testimonoal" />
                                     <div class="testimonial-text">
                                         <h3 class="fs-1">Confianza y seguridad en cada uno de los envios</h3>
                                     </div>
                                 </div>
-                                <div class=""><img class="img-circle" src="/gospaqueterias/public/assets/images/bulto.png" alt="Client Testimonoal" />
+                                <div class=""><img class="img-circle" src="/public/assets/images/bulto.png" alt="Client Testimonoal" />
                                     <div class="testimonial-text">
                                         <h3 class="fs-1">Recomendada por todos nuestros clientes</h3>
                                     </div>
                                 </div>
-                                <div class=""><img class="img-circle" src="/gospaqueterias/public/assets/images/bulto2.png" alt="Client Testimonoal" />
+                                <div class=""><img class="img-circle" src="/public/assets/images/bulto2.png" alt="Client Testimonoal" />
                                     <div class="testimonial-text">
                                         <h3 class="fs-1">Satisfaccion total en el envio y cuidado de sus productos</h3>
                                     </div>
@@ -285,7 +203,7 @@
                                 <div class="col-sm-6">
                                     <div class="table-left wow fadeInUp" data-wow-delay="0.4s">
                                         <div class="icon">
-                                            <img src="/gospaqueterias/public/assets/logos/cart2.png" alt="Icon" />
+                                            <img src="/public/assets/logos/cart2.png" alt="Icon" />
                                         </div>
                                         <div class="pricing-details">
                                             <h2>Paquete pequeno</h2>
@@ -305,7 +223,7 @@
                                 <div class="col-sm-6 ">
                                     <div class="table-right wow fadeInUp" data-wow-delay="0.6s">
                                         <div class="icon">
-                                            <img src="/gospaqueterias/public/assets/logos/cart1.png" alt="Icon" />
+                                            <img src="/public/assets/logos/cart1.png" alt="Icon" />
                                         </div>
                                         <div class="pricing-details">
                                             <h2>Bultos grandes</h2>
@@ -398,11 +316,11 @@
             <div class="footer">
                 <div class="container">
                     <div class="col-md-12 text-center">
-                        <img src="/gospaqueterias/public/assets/images/GOSresizeBG.png" alt="Adminty Logo" />
+                        <img src="/public/assets/images/GOSresizeBG.png" alt="Adminty Logo" />
                         <ul class="footer-menu">
                             <li><a href="http://demo.com">Site</a></li>
                             <li><a href="#">Soporte</a></li>
-                            <li><a href="#">Terminos</a></li>
+                            <li><a href="{{route('terminos')}}">Terminos</a></li>
                             <li><a href="#">Privacidad</a></li>
                         </ul>
                         <div class="footer-text">
@@ -419,16 +337,5 @@
             </a>
             <!-- Scroll To Top Ends-->
         </div>
-        <!-- Main Section -->
-    </div>
-    <!-- Wrapper-->
 
-    <!-- Jquery and Js Plugins -->
-    <script type="text/javascript" src="/gospaqueterias/public/assets/js/jquery-2.1.1.js"></script>
-    <script type="text/javascript" src="/gospaqueterias/public/assets/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/gospaqueterias/public/assets/js/plugins.js"></script>
-    <script type="text/javascript" src="/gospaqueterias/public/assets/js/menu.js"></script>
-    <script type="text/javascript" src="/gospaqueterias/public/assets/js/custom.js"></script>
-</body>
-
-</html>
+        @endsection
