@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\nuevoUsuario;
 use App\Models\Sucursal;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -57,10 +60,13 @@ class UserController extends Controller
             'email'=>'required|email|unique:users',
             'sucursal'=>'required|string',
         ]);
-
-        $request['password']=strtoupper($request['lastname']);
-
-        $request;
+        $request['password']=Str::random(10);
+        
+        $mensaje['name']=$request['name'];
+        $mensaje['password']=$request['password'];
+        $mensaje['email']=$request['email'];
+        
+        Mail::to($request['email'])->queue(new nuevoUsuario ($mensaje));
 
         User::create([
             'name' => $request['name'],
