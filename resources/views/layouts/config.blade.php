@@ -286,7 +286,7 @@
                                     </ul>
                                 </li>
                                 
-                                <li class="pcoded-hasmenu {{ request()->routeIs('listaEntrega') ? 'active pcoded-trigger' : '' }}">
+                                <li class="pcoded-hasmenu {{ request()->routeIs('listaEntrega') ? 'active pcoded-trigger' : '' }} {{ request()->routeIs('listaEntregaSucursal') ? 'active pcoded-trigger' : '' }}">
                                     <a href="javascript:void(0)">
                                         <span class="pcoded-micon"><i class="fa fa-address-book-o"></i></span>
                                         <span class="pcoded-mtext">Clientes</span>
@@ -295,7 +295,33 @@
                                         {{-- <li class="active"> --}}
                                         <li class="{{ request()->routeIs('listaEntrega') ? 'active' : '' }}">
                                             <a href="{{route('listaEntrega')}}">
-                                                <span class="pcoded-mtext">Entrega final</span>
+                                                <span class="pcoded-mtext">Entrega Final Domicilio</span>
+                                            </a>
+                                        </li>
+                                        <li class="{{ request()->routeIs('listaEntregaSucursal') ? 'active' : '' }}">
+                                            <a href="{{route('listaEntregaSucursal')}}">
+                                                <span class="pcoded-mtext">Entrega Final Sucursal</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+
+                                <li class="pcoded-hasmenu {{ request()->routeIs('listaEntrega') ? 'active pcoded-trigger' : '' }} {{ request()->routeIs('listaEntregaSucursal') ? 'active pcoded-trigger' : '' }}">
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="fa fa-bar-chart"></i></span>
+                                        <span class="pcoded-mtext">Reportes</span>
+                                    </a>        
+                                    <ul class="pcoded-submenu">
+                                        {{-- <li class="active"> --}}
+                                        <li class="{{ request()->routeIs('listaEntrega') ? 'active' : '' }}">
+                                            <a href="{{route('listaEntrega')}}">
+                                                <span class="pcoded-mtext">Reporte de envios</span>
+                                            </a>
+                                        </li>
+                                        <li class="{{ request()->routeIs('listaEntregaSucursal') ? 'active' : '' }}">
+                                            <a href="{{route('listaEntregaSucursal')}}">
+                                                <span class="pcoded-mtext">Reporte de ingresos</span>
                                             </a>
                                         </li>
                                     </ul>

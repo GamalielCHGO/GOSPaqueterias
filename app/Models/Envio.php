@@ -19,6 +19,7 @@ class Envio extends Model
         'correo',
         'nombre_destino',
         'direccion_destino',
+        'correo_destino',
         'telefono_destino',
         'estado',
         'fecha_recibo',
@@ -40,5 +41,6 @@ class Envio extends Model
         'ocurre',
         'firma_entrega',
         'ine_entrega',
+        'etiqueta',
     ];
 }

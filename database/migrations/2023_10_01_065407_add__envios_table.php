@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('rfc');
 
             $table->string('nombre_destino');
+            $table->string('correo_destino');
             $table->string('direccion_destino');
             $table->string('telefono_destino');
 
@@ -49,9 +50,11 @@ return new class extends Migration
             $table->string('evidencia_recibo')->nullable();
             $table->string('observaciones_recibo')->nullable();
             $table->string('ocurre')->nullable();
+            $table->string('etiqueta')->nullable();
 
             $table->string('ine_entrega')->nullable();
             $table->string('firma_entrega')->nullable();
+            
             
 
             

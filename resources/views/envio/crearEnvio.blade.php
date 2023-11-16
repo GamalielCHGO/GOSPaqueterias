@@ -18,7 +18,6 @@
     </div>
 </div>
 <!-- Page-header end -->
-{{$errors}}
 <!-- Page body start -->
 <div class="page-body">
     <div class="container">
@@ -107,7 +106,7 @@
                             @enderror
                         </div>
                         <div class="form-group col-lg-6">
-                            <label for="telefono_destino">Telefono destino</label>
+                            <label for="telefono_destino">Telefono Destino</label>
                             <input type="text" name="telefono_destino" id="telefono_destino" class="form-control form-txt-primary  bg-light shadow-sm @error('telefono_destino') is-invalid @else border-0  @enderror"
                             placeholder="Telefono destino..." required
                             value="{{old('telefono_destino')}}"  
@@ -118,13 +117,25 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="form-group col-lg-12">
-                            <label for="direccion_destino">Direccion destino</label>
+                        <div class="form-group col-lg-6">
+                            <label for="direccion_destino">Direccion Destino</label>
                             <input type="text" name="direccion_destino" id="" class="form-control form-txt-primary  bg-light shadow-sm @error('direccion_destino') is-invalid @else border-0  @enderror"
                             placeholder="Direccion destino..."  required
                             value="{{old('direccion_destino')}}"  
                             id="direccion_destino">
                             @error('direccion_destino')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{$message}}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <label for="correo_destino">Correo Destino</label>
+                            <input type="email" name="correo_destino" id="" class="form-control form-txt-primary  bg-light shadow-sm @error('correo_destino') is-invalid @else border-0  @enderror"
+                            placeholder="Correo..."  required
+                            value="{{old('correo_destino')}}"  
+                            id="correo_destino">
+                            @error('correo_destino')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{$message}}</strong>
                                 </span>

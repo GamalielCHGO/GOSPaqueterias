@@ -40,7 +40,7 @@
                                             <tr>
                                                 <td class="pro-list-img">{{$envio->id}}</td>
                                                 <td class="pro-list-img">{{$envio->guia}}</td>
-                                                <td class="pro-list-img">{{$sucursales[$envio->sucursal_destino]->nombre}}</td>
+                                                <td class="pro-list-img">{{$envio->sucursal_destino}}</td>
                                                 <td class="pro-list-img">{{$envio->cantidad}}</td>
                                                 <td class="pro-list-img">{{$envio->direccion_destino}}</td>
                                                 <td class="pro-list-img">{{$envio->total}}</td>

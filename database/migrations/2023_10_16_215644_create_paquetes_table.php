@@ -23,6 +23,7 @@ return new class extends Migration
             $table->integer('peso');
             $table->string('evidencia');
             $table->string('contenido');
+            $table->string('etiqueta')->nullable();
         });
     }
 

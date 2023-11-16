@@ -65,6 +65,7 @@ Route::patch('/envio/editar/{envio}','App\Http\Controllers\EnvioController@updat
 Route::delete('/envio/{envio}','App\Http\Controllers\EnvioController@destroy')->name('envio.destroy');
 // entregas
 Route::get('/listaEntrega','App\Http\Controllers\EnvioController@listaEntrega')->name('listaEntrega');
+Route::get('/listaEntregaSucursal','App\Http\Controllers\EnvioController@listaEntregaSucursal')->name('listaEntregaSucursal');
 Route::get('/entrega/{envio}','App\Http\Controllers\EnvioController@entrega')->name('entrega');
 Route::post('/procesarEntrega/{envio}','App\Http\Controllers\EnvioController@procesarEntrega')->name('procesarEntrega');
 

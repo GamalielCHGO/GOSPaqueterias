@@ -58,6 +58,16 @@ class EnvioController extends Controller
      */
     public function store(Request $request)
     {
+
+        if($request->ocurre)
+        {
+            $ocurre="Y";
+        }
+        else
+            $ocurre="N";
+
+
+
         request()->validate([
             'nombre_remitente'=>'required', 
             'direccion_remitente'=>'required',
@@ -65,6 +75,7 @@ class EnvioController extends Controller
             'correo'=>'required',
             'rfc'=>'required',
             'nombre_destino'=>'required',
+            'correo_destino'=>'required',
             'telefono_destino'=>'required',
             'direccion_destino'=>'required',
             'sucursal_destino'=>'required',
@@ -91,10 +102,13 @@ class EnvioController extends Controller
             'rfc' => $request['rfc'],
             'nombre_destino' => $request['nombre_destino'],
             'telefono_destino' => $request['telefono_destino'],
+            'correo_destino' => $request['correo_destino'],
             'direccion_destino' => $request['direccion_destino'],
             'guia' => $guia,
             'contrasena_entrega' => $clave,
             'sucursal_destino'=> $request['sucursal_destino'],
+            'ocurre'=> $ocurre,
+            
         ]);
 
         return redirect()->route('envio',
@@ -186,13 +200,6 @@ class EnvioController extends Controller
                 'required',],
         ]);
 
-        if($request->ocurre)
-        {
-            $ocurre="Y";
-        }
-        else
-            $ocurre="N";
-
 
         // guardando INE
         $file = $request->file('ine')[0];
@@ -225,16 +232,15 @@ class EnvioController extends Controller
         $newNameFirma=$name."_Firma.".$ext2;
                 
         // guardando archivos y creando la ruta
-        $pathOrFirma = public_path('firmaEntrega');
-        $pathSaveFirma = public_path('firmaEntrega');
+        $pathOrFirma = public_path('img\FirmaEntrega');
+        $pathSaveFirma = public_path('img\FirmaEntrega');
         $pathSaveFirma = explode('www',$pathSaveFirma)[1];
                 
         if (!file_exists($pathOrFirma)) {
             mkdir($pathOrFirma, 666, true);
         }
         // resize image to new width
-        $pathOrFirma.'/'.$newNameFirma;
-        $path = $file->storeAs('firmaEntrega/',$newNameFirma, 'public2');
+        $path = $file->storeAs('firmaEntrega',$newNameFirma, 'public2');
         // rutas donde se guardaron los archivos
         $pathSaveFirma=$pathSaveFirma.'/'.$newNameFirma;
         $pathSaveIne=$pathSaveIne.'/'.$newNameIne;
@@ -355,12 +361,8 @@ class EnvioController extends Controller
             } else {
                 print_r("Error: $result");
             }
-            Etiqueta::insert([
-                'zpl'=>$zpl,
-                'ruta'=>$rutaFinal,
-                'id_paquete'=>$paquete->id,
-            ]);
-            Envio::where('envioId',$request->guia)->update([
+            
+            Paquete::where('id',$paquete->id)->update([
                 'etiqueta'=>$rutaFinal,
             ]);
             curl_close($curl);
@@ -396,7 +398,6 @@ class EnvioController extends Controller
             'ine'=>$pathSaveIne,
             'firma'=>$pathSaveFirma,
             'pdf'=>$rutapdf,
-            'ocurre'=>$ocurre,
 
         ]);
         return redirect()->route('listaEnvios')->with('status','El envio fue terminado con exito');
@@ -427,7 +428,7 @@ class EnvioController extends Controller
         Envio::whereIn('id',$request->envios)->update([
             'estado'=>'C',
             'fecha_envio'=>DB::raw('NOW()'),
-            'idTransporte'=>$idTransporte,
+            'id_transporte'=>$idTransporte,
         ]);
 
         return redirect()->route('listaEnvios')->with('status','Los envios fueron procesados con exito');
@@ -445,6 +446,12 @@ class EnvioController extends Controller
 
     public function procesarReciboUnidad(Request $request){
         
+        request()->validate([
+            'observaciones_recibo'=>'required',
+            'evidencia'=>'required',
+            'envios'=>'required',
+        ]);
+
         $request= request();
         $files = $request->file('evidencia');
         $nombreArchivos="";
@@ -480,14 +487,21 @@ class EnvioController extends Controller
         }
         else
         {$nombreArchivos="";}
-
-
-        Envio::whereIn('id',$request->envios)->update([
-            'estado'=>'ER',
-            'fecha_sucursal'=>DB::raw('NOW()'),
-            'evidencia_recibo'=>$nombreArchivos,
-            'observaciones_recibo'=>$request->observaciones_recibo,
-        ]);
+        
+        foreach ($request->envios as $key) {
+            $envio=Envio::where('id',$key)->first();
+            if($envio->ocurre=="Y")
+                $estado = "ER";
+            else
+                $estado = "EE";
+            Envio::where('id',$key)->update([
+                'estado'=>$estado,
+                'fecha_sucursal'=>DB::raw('NOW()'),
+                'evidencia_recibo'=>$nombreArchivos,
+                'observaciones_recibo'=>$request->observaciones_recibo,
+            ]);    
+        }
+        
 
         return redirect()->route('listaEnvios')->with('status','Los envios fueron procesados con exito');
 
@@ -541,7 +555,16 @@ class EnvioController extends Controller
 
     public function listaEntrega(){
         return view('envio.listaEntrega',[
-            'envios'=> Envio::where('estado','EE')->where('sucursal_destino',$sucursal=Auth::user()->sucursal)->get()]);
+            'envios'=> Envio::where('estado','EE')->where('sucursal_destino',$sucursal=Auth::user()->sucursal)->get(),
+            'titulo'=>'Lista entrega sucursal',
+        ],);
+    }
+
+    public function listaEntregaSucursal(){
+        return view('envio.listaEntrega',[
+            'envios'=> Envio::where('estado','ER')->where('sucursal_destino',$sucursal=Auth::user()->sucursal)->get(),
+            'titulo'=>'Lista entrega Domicilio',
+        ]);
     }
 
     public function procesarEntrega(Envio $envio){
@@ -566,8 +589,8 @@ class EnvioController extends Controller
         $newNameIne=$name."_Ine.".$ext;
                 
         // guardando archivos y creando la ruta
-        $pathOrIne = public_path('img\ineEntrega');
-        $pathSaveIne = public_path('img\ineEntrega');
+        $pathOrIne = public_path('img\ineRecibo');
+        $pathSaveIne = public_path('img\ineRecibo');
         $pathSaveIne = explode('www',$pathSaveIne)[1];
         
                 
@@ -589,8 +612,8 @@ class EnvioController extends Controller
         $newNameFirma=$name."_Firma.".$ext2;
                 
         // guardando archivos y creando la ruta
-        $pathOrFirma = public_path('firmaEntrega');
-        $pathSaveFirma = public_path('firmaEntrega');
+        $pathOrFirma = public_path('img\firmaRecibo');
+        $pathSaveFirma = public_path('img\firmaRecibo');
         $pathSaveFirma = explode('www',$pathSaveFirma)[1];
                 
         if (!file_exists($pathOrFirma)) {
@@ -598,15 +621,16 @@ class EnvioController extends Controller
         }
         // resize image to new width
         $pathOrFirma.'/'.$newNameFirma;
-        $path = $file->storeAs('firmaEntrega/',$newNameFirma, 'public2');
+        $path = $file->storeAs('firmaRecibo\\',$newNameFirma, 'public2');
         // rutas donde se guardaron los archivos
         $pathSaveFirma=$pathSaveFirma.'/'.$newNameFirma;
         $pathSaveIne=$pathSaveIne.'/'.$newNameIne;
 
         Envio::where('guia',$envio->guia)->update([
             'estado'=>'E',
-            'ine'=>$pathSaveIne,
-            'firma'=>$pathSaveFirma,
+            'ine_entrega'=>$pathSaveIne,
+            'firma_entrega'=>$pathSaveFirma,
+            'fecha_entrega'=>DB::raw('NOW()'),
         ]);
         return redirect()->route('listaEnvios')->with('status','El envio fue terminado con exito');
     }

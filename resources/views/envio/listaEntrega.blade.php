@@ -1,7 +1,7 @@
 @extends('layouts.config')
 
 @section('title')
-Lista Entrega a cliente
+{{$titulo}}
 @endsection
 
 @section('content')
@@ -10,7 +10,7 @@ Lista Entrega a cliente
         <!-- bug list card start -->
         <div class="card">
             <div class="card-header">
-                <h1>Lista de Entrega de paquetes</h1>
+                <h1>{{$titulo}}</h1>
                 @if(session('status'))
                     <div class="alert alert-dismissible alert-success background-success">
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -71,7 +71,7 @@ Lista Entrega a cliente
                                             @break
                                         @case('ER')
                                             <td>Espera Recoleccion</td>
-                                            <td>Ver <a href="{{ route('envioLectura', $item) }}"><i class="icofont icofont-eye fs-5 text-success"></a></td>
+                                            <td>Ver <a href="{{ route('entrega', $item) }}"><i class="icofont icofont-eye fs-5 text-success"></a></td>
                                             @break
                                         @case('EE')
                                             <td>Espera Entrega</td>
@@ -83,7 +83,7 @@ Lista Entrega a cliente
                                 </tr>
                             @empty
                             <tr>
-                                No hay costos para mostrar
+                                No hay guias para mostrar
                             </tr>
                             @endforelse
                         </tbody>

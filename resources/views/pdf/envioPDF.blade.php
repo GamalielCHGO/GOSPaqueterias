@@ -88,7 +88,7 @@ $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
         <img src="<?php echo $base64?>" class="imagen"/>
     </div>
     <div class="contenedor titulo">
-        <span style="float: right; margin-top: -100px; margin-right: 50px"><h1>Reporte Guia: {{$guia->guia}}</h1></span>
+        <span style="float: right; margin-top: -100px; margin-right: 50px"><h1>Carta porte: {{$guia->guia}}</h1></span>
         <span style="float: right; margin-top: -30px; margin-right: 50px"><h3>Fecha de envio {{$fecha}}</h3></span>
     </div>
     <div class="contenedor">
@@ -158,7 +158,7 @@ $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
         </div>
     </div>
 
-    <footer class="centrar">GOS Paqueterias</footer>
+    <footer class="centrar">GOS Paqueterias https://gospaqueterias.com/</footer>
     
 </body>
 

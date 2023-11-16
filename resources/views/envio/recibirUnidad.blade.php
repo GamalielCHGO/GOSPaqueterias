@@ -20,6 +20,12 @@
             <div class="col-12 col-sm-10 col-lg-12 mx-auto">
                     <h1 class="display-4">Recibo de paquetes en sucursal {{ Auth::user()->sucursal}}</h1>
                     <hr>
+                    @if ($errors->any())
+                        <div class="alert alert-dismissible alert-danger background-danger">
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            <strong>{{$errors->first()}}</strong>
+                        </div>
+                    @endif
                         <div class="card-block">
                             <div class="table-responsive">
                                 <table id="issue-list-table"

@@ -24,6 +24,7 @@ class Paquete extends Model
         'contenido',
         'evidencia_envio',
         'firma',
+        'etiqueta',
     ];
 
 

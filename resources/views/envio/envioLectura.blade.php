@@ -1,43 +1,65 @@
 @extends('layouts.config')
 
 @section('content')
-<!-- Page-header start -->
-<div class="page-header">
-    <div class="row align-items-end">
-        <div class="col-lg-8">
-            <div class="page-header-title">
-                <div class="d-inline">
-                    <h4>Generar envio</h4>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- Page body start -->
 <div class="page-body">
     <div class="container">
         <div class="row">
             <div class="col-12 col-sm-10 col-lg-12 mx-auto">
-                    <h1 class="display-4">Visualiza Guia:{{$envio->guia}} <a class="btn btn-success" href="{{$envio->pdf}}" target="blank">
+                    <h1 class="display-4">Visualiza Guia: {{$envio->guia}} <a class="btn btn-success" href="{{$envio->pdf}}" target="blank">
                         <i class="icofont icofont-file-pdf fs-5"></i>
                     </a></h1>
-                    <table class="table table-responsive fs-4">
-                        <thead class="table-primary">
-                            <th>Fecha recibo</th>
-                            <th>Fecha envio</th>
-                            <th>Fecha sucursal</th>
-                            <th>Fecha entrega</th>
-                            <th>Id transporte</th>
-                        </thead>
-                        <tbody>
-                            <td>{{$envio->fecha_recibo}}</td>
-                            <td>{{$envio->fecha_envio}}</td>
-                            <td>{{$envio->fecha_sucursal}}</td>
-                            <td>{{$envio->fecha_entrega}}</td>
-                            <td>{{$envio->id_transporte}}</td>
-                        </tbody>
-                    </table>
+                    <div class="container text-center col-auto">
+                        <table class="table table-responsive fs-4">
+                            <thead class="bg-primary">
+                                <th>Fecha recibo</th>
+                                <th>Fecha envio</th>
+                                <th>Fecha sucursal</th>
+                                <th>Fecha entrega</th>
+                                <th>Id transporte</th>
+                            </thead>
+                            <tbody >
+                                <td class="border">{{$envio->fecha_recibo}}</td>
+                                <td class="border">{{$envio->fecha_envio}}</td>
+                                <td class="border">{{$envio->fecha_sucursal}}</td>
+                                <td class="border">{{$envio->fecha_entrega}}</td>
+                                <td class="border">{{$envio->id_transporte}}</td>
+                            </tbody>
+                        </table>
+                    </div>
                     <hr>
+                    @if ($envio->estado=="E")
+                        <div class="container row justify-content-center">
+                            <div class="container col-auto">
+                                <table class="table table-responsive fs-4 text-center">
+                                    <thead class="bg-primary">
+                                        <th>INE Origen</th>
+                                        <th>Firma Origen</th>
+                                        <th>INE Destino</th>
+                                        <th>Firma Destino</th>
+                                    </thead>
+                                    <tbody >
+                                        <td class="border"><img src="{{$envio->ine}}" alt="" srcset="" class="img-fluid"></td>
+                                        <td class="border"><img src="{{$envio->firma}}" alt="" srcset="" class="img-fluid"></td>
+                                        <td class="border"><img src="{{$envio->ine_entrega}}" alt="" srcset="" class="img-fluid"></td>
+                                        <td class="border"><img src="{{$envio->firma_entrega}}" alt="" srcset="" class="img-fluid"></td>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="container-fluid text-center">
+                                <div class="container bg-primary">
+                                    <h2>Evidencia de recibo en sucursal</h2>
+                                </div>
+                                @foreach (explode(";",$envio->evidencia_recibo) as $item)
+                                    <img src="{{$item}}" alt="" srcset="" class="img-fluid">
+                                @endforeach
+                                <h3>{{$envio->observaciones_recibo}}</h3>
+                            </div>
+                        </div>
+                    <br>
+                    @endif
+                    
                     
                     <div class="row bg-white shadow rounded py-3 px-4
                     bg-white shadow rounded py-3 px-4">
