@@ -163,7 +163,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
   <tr>
     <td style="padding-right: 0px;padding-left: 0px;" align="center">
       
-      <img align="center" border="0" src="{{ $message->embed("\gospaqueterias\public\assets\images\logo GOS.png") }}" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 42%;max-width: 222.6px;" width="222.6" class="v-src-width v-src-max-width"/>
+      <img align="center" border="0" src="{{ $message->embed(public_path()."\assets\images\logo GOS.png") }}" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 42%;max-width: 222.6px;" width="222.6" class="v-src-width v-src-max-width"/>
       
     </td>
   </tr>
@@ -249,8 +249,8 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
     <tr>
       <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:0px 10px 10px;font-family:'Lato',sans-serif;" align="left">
         
-  <h3 style="margin: 0px; color: #ffffff; line-height: 140%; text-align: center; word-wrap: break-word; font-family: book antiqua,palatino; font-size: 18px; font-weight: 400;">Tu numero de guia es: {{$mensaje['guia']}}</h3>
-  <h3 style="margin: 0px; color: #ffffff; line-height: 140%; text-align: center; word-wrap: break-word; font-family: book antiqua,palatino; font-size: 18px; font-weight: 400;">Podras recibir tu paquete con las siguiente contrasena: {{$mensaje['clave']}}</h3>
+  <h3 style="margin: 0px; color: #ffffff; line-height: 140%; text-align: center; word-wrap: break-word; font-family: book antiqua,palatino; font-size: 18px; font-weight: 400;">Tu numero de guia es: <span style="font-size: 30px; font-weight: 600;">{{$mensaje['guia']}}</span></h3>
+  <h3 style="margin: 0px; color: #ffffff; line-height: 140%; text-align: center; word-wrap: break-word; font-family: book antiqua,palatino; font-size: 18px; font-weight: 400;">Podras recibir tu paquete con las siguiente contrasena: <span style="font-size: 30px; font-weight: 600;">{{$mensaje['clave']}}</span></h3>
 
       </td>
     </tr>
@@ -289,7 +289,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
   <tr>
     <td style="padding-right: 0px;padding-left: 0px;" align="center">
       
-      <img align="center" border="0" src="\gospaqueterias\public\assets\images\buscar.jpg" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 39%;max-width: 206.7px;" width="206.7" class="v-src-width v-src-max-width"/>
+      <img align="center" border="0" src="{{ $message->embed(public_path()."\assets\images\buscar.jpg") }}" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 39%;max-width: 206.7px;" width="206.7" class="v-src-width v-src-max-width"/>
       
     </td>
   </tr>

@@ -65,9 +65,8 @@ class UserController extends Controller
         $mensaje['name']=$request['name'];
         $mensaje['password']=$request['password'];
         $mensaje['email']=$request['email'];
-        
-        Mail::to($request['email'])->queue(new nuevoUsuario ($mensaje));
 
+        Mail::to($request['email'])->queue(new nuevoUsuario ($mensaje));
         User::create([
             'name' => $request['name'],
             'role' => $request['role'],

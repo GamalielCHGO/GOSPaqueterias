@@ -86,13 +86,7 @@ class EnvioController extends Controller
 
         $clave= substr(mt_rand(),0,6);
 
-        $mensaje['guia']=$guia;
-        $mensaje['clave']=$clave;
-        $mensaje['nombre_remitente']=$request['nombre_remitente'];
-        $mensaje['direccion']=$request['direccion'];
         
-        // envio de correo
-        // Mail::to($supervisorEmail)->queue(new PaqueteRecibido ($mensaje));
 
         Envio::create([
             'nombre_remitente' => $request['nombre_remitente'],
@@ -389,6 +383,15 @@ class EnvioController extends Controller
         $pdf->save($rutapdf);
         $rutapdf=explode('www',$rutapdf)[1];
         // terminando PDF
+        $mensaje['guia']=$envio->guia;
+        $mensaje['clave']=$envio->contrasena_entrega;
+        $mensaje['nombre_remitente']=$envio->nombre_remitente;
+        $mensaje['direccion']=$envio->direccion;
+
+                // envio de correo
+                Mail::to($envio->correo_destino)
+                ->cc($envio->correo)
+                ->queue(new PaqueteRecibido ($mensaje));
 
         Envio::where('guia',$envio->guia)->update([
             'estado'=>'P',

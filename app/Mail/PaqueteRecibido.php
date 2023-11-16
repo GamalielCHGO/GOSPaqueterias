@@ -66,8 +66,6 @@ class PaqueteRecibido extends Mailable
      */
     public function attachments(): array
     {
-        return [
-            Attachment::fromPath('\gospaqueterias\public\assets\images\logo GOS.png'),
-        ];
+        return [];
     }
 }

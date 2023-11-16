@@ -163,7 +163,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
   <tr>
     <td style="padding-right: 0px;padding-left: 0px;" align="center">
       
-      <img align="center" border="0" src="\public\assets\images\logo GOS.png" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 42%;max-width: 222.6px;" width="222.6" class="v-src-width v-src-max-width"/>
+      <img align="center" border="0" src="{{ $message->embed(public_path()."\assets\images\logo GOS.png") }}" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 42%;max-width: 222.6px;" width="222.6" class="v-src-width v-src-max-width"/>
       
     </td>
   </tr>
@@ -290,7 +290,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
   <tr>
     <td style="padding-right: 0px;padding-left: 0px;" align="center">
       
-      <img align="center" border="0" src="\public\assets\images\buscar.jpg" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 39%;max-width: 206.7px;" width="206.7" class="v-src-width v-src-max-width"/>
+      <img align="center" border="0" src="{{ $message->embed(public_path()."\assets\images\buscar.jpg") }}" alt="Image" title="Image" style="outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;clear: both;display: inline-block !important;border: none;height: auto;float: none;width: 39%;max-width: 206.7px;" width="206.7" class="v-src-width v-src-max-width"/>
       
     </td>
   </tr>
@@ -362,7 +362,7 @@ table, td { color: #000000; } #u_body a { color: #0000ee; text-decoration: under
       <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px 10px 15px;font-family:'Lato',sans-serif;" align="left">
         
   <div style="font-size: 14px; color: #7e8c8d; line-height: 140%; text-align: center; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 140%;">© 2023 PLSistemas. Todos los derechos reservados</p>
+    <p style="font-size: 14px; line-height: 140%;">© 2023 GOSPaqueterias. Todos los derechos reservados</p>
   </div>
 
       </td>
