@@ -32,7 +32,7 @@ class EnvioController extends Controller
      */
     public function index()
     {
-        return view('envio.listaenvios',[
+        return view('envio.listaEnvios',[
             'envios'=> Envio::get()]);
     }
 
@@ -203,8 +203,8 @@ class EnvioController extends Controller
         $newNameIne=$name."_Ine.".$ext;
                 
         // guardando archivos y creando la ruta
-        $pathOrIne = public_path('img\ineEntrega');
-        $pathSaveIne = public_path('img\ineEntrega');
+        $pathOrIne = public_path('img/IneEntrega');
+        $pathSaveIne = public_path('img/IneEntrega');
         $pathSaveIne = explode('www',$pathSaveIne)[1];
         
                 
@@ -226,8 +226,8 @@ class EnvioController extends Controller
         $newNameFirma=$name."_Firma.".$ext2;
                 
         // guardando archivos y creando la ruta
-        $pathOrFirma = public_path('img\FirmaEntrega');
-        $pathSaveFirma = public_path('img\FirmaEntrega');
+        $pathOrFirma = public_path('img/FirmaEntrega');
+        $pathSaveFirma = public_path('img/FirmaEntrega');
         $pathSaveFirma = explode('www',$pathSaveFirma)[1];
                 
         if (!file_exists($pathOrFirma)) {
@@ -346,10 +346,10 @@ class EnvioController extends Controller
             if (!file_exists($pathOriginal)) {
                 mkdir($pathOriginal, 666, true);
             }
-            $rutaFinal=$pathOriginal."\\".$request->guia."_".$i.".pdf";
+            $rutaFinal=$pathOriginal."/".$request->guia."_".$i.".pdf";
             $rutaFinal=explode("www",$rutaFinal)[1];
             if (curl_getinfo($curl, CURLINFO_HTTP_CODE) == 200) {
-                $file = fopen($pathOriginal."\\".$request->guia."_".$i.".pdf", "w");
+                $file = fopen($pathOriginal."/".$request->guia."_".$i.".pdf", "w");
                 fwrite($file, $result);
                 fclose($file);
             } else {
@@ -379,7 +379,7 @@ class EnvioController extends Controller
         ];
     
         $pdf = Pdf::loadView('pdf.envioPDF', $data);
-        $rutapdf = public_path('pdf')."\\".$envio->guia.'.pdf';
+        $rutapdf = public_path('pdf')."/".$envio->guia.'.pdf';
         $pdf->save($rutapdf);
         $rutapdf=explode('www',$rutapdf)[1];
         // terminando PDF
@@ -469,8 +469,8 @@ class EnvioController extends Controller
                 $newName=$name."_".$counter.$clave.".".$ext;
                 
                 // guardando archivos y crenado la ruta
-                $pathOriginal = public_path('img\evidencia_recibo');
-                $pathSave = public_path('img\evidencia_recibo');
+                $pathOriginal = public_path('img/evidencia_recibo');
+                $pathSave = public_path('img/evidencia_recibo');
                 $pathSave = explode('www',$pathSave)[1];
 
                 // $pathOr = explode('gospaqueterias',$pathOriginal,4);
@@ -592,8 +592,8 @@ class EnvioController extends Controller
         $newNameIne=$name."_Ine.".$ext;
                 
         // guardando archivos y creando la ruta
-        $pathOrIne = public_path('img\ineRecibo');
-        $pathSaveIne = public_path('img\ineRecibo');
+        $pathOrIne = public_path('img/IneRecibo');
+        $pathSaveIne = public_path('img/IneRecibo');
         $pathSaveIne = explode('www',$pathSaveIne)[1];
         
                 
@@ -615,8 +615,8 @@ class EnvioController extends Controller
         $newNameFirma=$name."_Firma.".$ext2;
                 
         // guardando archivos y creando la ruta
-        $pathOrFirma = public_path('img\firmaRecibo');
-        $pathSaveFirma = public_path('img\firmaRecibo');
+        $pathOrFirma = public_path('img/firmaRecibo');
+        $pathSaveFirma = public_path('img/firmaRecibo');
         $pathSaveFirma = explode('www',$pathSaveFirma)[1];
                 
         if (!file_exists($pathOrFirma)) {
@@ -624,7 +624,7 @@ class EnvioController extends Controller
         }
         // resize image to new width
         $pathOrFirma.'/'.$newNameFirma;
-        $path = $file->storeAs('firmaRecibo\\',$newNameFirma, 'public2');
+        $path = $file->storeAs('firmaRecibo/',$newNameFirma, 'public2');
         // rutas donde se guardaron los archivos
         $pathSaveFirma=$pathSaveFirma.'/'.$newNameFirma;
         $pathSaveIne=$pathSaveIne.'/'.$newNameIne;

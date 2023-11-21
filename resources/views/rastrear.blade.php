@@ -36,11 +36,17 @@
                         <div class="col-md-8">
                             <div class="services-content">
                                 <h1 class="wow fadeInUp azulGOS" data-wow-delay="0.8s">Proporcionanos tu numero de guia</h1>
+                                @if(session('status'))
+                                    <div class="alert alert-dismissible alert-danger background-danger">
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        <strong>Error!! </strong> {{ session('status')}}
+                                    </div>
+                                @endif
                                 <br>
                                 <form action="{{route('rastrear')}}" method="post" class="wow fadeInUp" data-wow-delay="1s">
                                     @csrf
                                     <div class="form-floating mb-3">
-                                        <input type="text" class="form-control" id="guia" name="guia" placeholder="12345678910">
+                                        <input type="text" class="form-control" id="guia" name="guia" placeholder="12345678910" autofocus="autofocus" >
                                         <label for="guia">Numero de guia</label>
                                     </div>
                                     <div>
@@ -58,7 +64,7 @@
             <div class="footer">
                 <div class="container">
                     <div class="col-md-12 text-center">
-                        <img src="/gospaqueterias/public/assets/images/GOSresizeBG.png" alt="Adminty Logo" />
+                        <img src="/public/assets/images/GOSresizeBG.png" alt="Adminty Logo" />
                         <ul class="footer-menu">
                             <li><a href="http://demo.com">Site</a></li>
                             <li><a href="#">Soporte</a></li>

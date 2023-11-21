@@ -37,9 +37,18 @@ class HomeController extends Controller
     }
     public function rastrearId(Request $request)
     {
-        return view('rastrearId',[
-            'guia'=>Envio::where('guia',$request->guia)->first(),
-        ]);
+        $envio = Envio::where('guia',$request->guia)->first();
+        $envio;
+        if($envio!=null)
+        {
+            return view('rastrearId',[
+                'guia'=>$envio,
+            ]);
+        }
+        else{
+            return redirect()->route('rastrear')->with('status','El numero de guia proporcionado no existe');
+        }
+        
     }
 
     public function terminos()

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.rastreo')
 
 @section('content')
 
@@ -46,51 +46,83 @@
                                         </div>
                                         <div class="card-block">
                                             <div class="latest-update-box">
-                                                <div class="row p-t-20 p-b-30">
-                                                    <div class="col-auto text-end update-meta">
-                                                        <i class="feather icon-play bg-info update-icon"></i>
+                                                @if ($guia->estado=="P"||$guia->estado=="C"||$guia->estado=="ER"||$guia->estado=="EE"||$guia->estado=="E")
+                                                    <div class="row p-t-20 p-b-30">
+                                                        <div class="col-auto text-end update-meta">
+                                                            <i class="feather icon-play bg-info update-icon"></i>
+                                                        </div>
+                                                        <div class="col">
+                                                            <h4>Paquete recibido en la paqueteria</h4>
+                                                            <p class="text-muted m-b-0">{{$guia->fecha_recibo}}</p>
+                                                        </div>
                                                     </div>
-                                                    <div class="col">
-                                                        <h4>Paquete recibido en la paqueteria</h4>
-                                                        <p class="text-muted m-b-0">{{$guia->fecha_recibo}}</p>
+                                                @endif
+                                                @if ($guia->estado=="C"||$guia->estado=="ER"||$guia->estado=="EE"||$guia->estado=="E")
+                                                    <div class="row p-b-30">
+                                                        <div class="col-auto text-end update-meta">
+                                                            <i class="feather icon-shopping-cart bg-simple-c-pink update-icon"></i>
+                                                        </div>
+                                                        <div class="col">
+                                                            <h4>Paquete camino a sucursal</h4>
+                                                            <p class="text-muted m-b-0">{{$guia->fecha_envio}}</p>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="row p-b-30">
-                                                    <div class="col-auto text-end update-meta">
-                                                        <i class="feather icon-shopping-cart bg-simple-c-pink update-icon"></i>
+                                                @endif
+
+                                                @if ($guia->estado=="ER"||$guia->estado=="EE"||$guia->estado=="E")
+                                                    <div class="row p-b-30">
+                                                        <div class="col-auto text-end update-meta">
+                                                            <i class="feather icon-briefcase bg-simple-c-yellow  update-icon"></i>
+                                                        </div>
+                                                        <div class="col">
+                                                            <h4>Paquete recibido en sucursal</h4>
+                                                            <p class="text-muted m-b-0">{{$guia->fecha_sucursal}}</p>
+                                                        </div>
                                                     </div>
-                                                    <div class="col">
-                                                        <h4>Paquete camino a sucursal</h4>
-                                                        <p class="text-muted m-b-0">{{$guia->fecha_recibo}}</p>
+                                                @endif
+
+                                                @if ($guia->estado=="EE"||$guia->estado=="E")
+                                                    <div class="row p-b-30">
+                                                        <div class="col-auto text-end update-meta">
+                                                            <i class="feather icon-eye bg-primary update-icon"></i>
+                                                        </div>
+                                                        <div class="col">
+                                                            <h4>Paquete en proceso de Entrega</h4>
+                                                            <p class="text-muted m-b-0">{{$guia->fecha_sucursal}}</p>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="row p-b-30">
-                                                    <div class="col-auto text-end update-meta">
-                                                        <i class="feather icon-briefcase bg-simple-c-yellow  update-icon"></i>
+                                                @endif
+
+                                                @if ($guia->estado=="ER"||$guia->estado=="E")
+                                                    <div class="row p-b-30">
+                                                        <div class="col-auto text-end update-meta">
+                                                            <i class="feather icon-eye bg-primary update-icon"></i>
+                                                        </div>
+                                                        <div class="col">
+                                                            <h4>Paquete esperando recoleccion</h4>
+                                                            <p class="text-muted m-b-0">{{$guia->fecha_sucursal}}</p>
+                                                        </div>
                                                     </div>
-                                                    <div class="col">
-                                                        <h4>Paquete recibido en sucursal</h4>
-                                                        <p class="text-muted m-b-0">{{$guia->fecha_recibo}}</p>
+                                                @endif
+
+                                                @if ($guia->estado=="E")
+                                                    <div class="row p-b-30">
+                                                        <div class="col-auto text-end update-meta">
+                                                            <i class="feather icon-check bg-simple-c-green update-icon"></i>
+                                                        </div>
+                                                        <div class="col">
+                                                            <h4>Paquete entregado</h4>
+                                                            <p class="text-muted m-b-0">{{$guia->fecha_entrega}}</p>
+                                                            <p>Firma de recibido</p>
+                                                            <img src="{{$guia->firma_entrega}}" alt="img-Firma" srcset="" class="img-fluid">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="row p-b-30">
-                                                    <div class="col-auto text-end update-meta">
-                                                        <i class="feather icon-eye bg-primary update-icon"></i>
-                                                    </div>
-                                                    <div class="col">
-                                                        <h4>Paquete en proceso de Entrega</h4>
-                                                        <p class="text-muted m-b-0">{{$guia->fecha_recibo}}</p>
-                                                    </div>
-                                                </div>
-                                                <div class="row p-b-30">
-                                                    <div class="col-auto text-end update-meta">
-                                                        <i class="feather icon-check bg-simple-c-green update-icon"></i>
-                                                    </div>
-                                                    <div class="col">
-                                                        <h4>Paquete entregado a Panchito Lopez</h4>
-                                                        <p class="text-muted m-b-0">{{$guia->fecha_recibo}}</p>
-                                                    </div>
-                                                </div>
+                                                @endif
+                                                
+                                                
+                                                
+                                                
+                                                
                                             </div>
                                         </div>
                                     </div>
