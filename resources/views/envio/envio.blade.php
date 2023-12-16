@@ -226,7 +226,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Datos del cliente</h1>
@@ -308,14 +308,14 @@
                 <form action="{{route('procesarEnvio',$envio)}}" method="post" enctype="multipart/form-data" id="procesarEnvio" name="procesarEnvio">
                     @csrf
                      <!-- Image upload card start -->
-                     <div class="card">
+                     {{-- <div class="card">
                         <div class="card-block">
                             <div class="sub-title">INE</div>
                             <input type="file" name="ine" id="filer_input" placeholder="imagen de INE" required>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- Image upload card end -->
-                    <p>Si esta de acuerdo con el envio de su paquete y con los terminos y condiciones por favor firme en el siguiente recuadro</p>
+                    {{-- <p>Si esta de acuerdo con el envio de su paquete y con los terminos y condiciones por favor firme en el siguiente recuadro</p> --}}
                     <div class="container text-center">
                         <div>
                             <canvas id="canvas" class="border"></canvas>
