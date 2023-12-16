@@ -234,7 +234,7 @@
         </div>
         <div class="modal-body">
             <div class="card">
-                <div class="card-block">
+                {{-- <div class="card-block">
                     <div class="services-content text-start">
                         <h4 class="wow fadeInUp fs-1" data-wow-delay="0s">Terminos y Condiciones</h4>
                         <p class="wow fadeInUp" data-wow-delay="0.2s">
@@ -304,7 +304,7 @@
                             </ol>
                         </p>
                     </div>
-                </div>
+                </div> --}}
                 <form action="{{route('procesarEnvio',$envio)}}" method="post" enctype="multipart/form-data" id="procesarEnvio" name="procesarEnvio">
                     @csrf
                      <!-- Image upload card start -->

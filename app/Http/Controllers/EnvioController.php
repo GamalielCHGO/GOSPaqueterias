@@ -234,7 +234,7 @@ class EnvioController extends Controller
             mkdir($pathOrFirma, 666, true);
         }
         // resize image to new width
-        $path = $file->storeAs('firmaEntrega',$newNameFirma, 'public2');
+        $path = $file->storeAs('FirmaEntrega',$newNameFirma, 'public2');
         // rutas donde se guardaron los archivos
         $pathSaveFirma=$pathSaveFirma.'/'.$newNameFirma;
         $pathSaveIne=$pathSaveIne.'/'.$newNameIne;
@@ -615,8 +615,8 @@ class EnvioController extends Controller
         $newNameFirma=$name."_Firma.".$ext2;
                 
         // guardando archivos y creando la ruta
-        $pathOrFirma = public_path('img/firmaRecibo');
-        $pathSaveFirma = public_path('img/firmaRecibo');
+        $pathOrFirma = public_path('img/FirmaRecibo');
+        $pathSaveFirma = public_path('img/FirmaRecibo');
         $pathSaveFirma = explode('www',$pathSaveFirma)[1];
                 
         if (!file_exists($pathOrFirma)) {
@@ -624,7 +624,7 @@ class EnvioController extends Controller
         }
         // resize image to new width
         $pathOrFirma.'/'.$newNameFirma;
-        $path = $file->storeAs('firmaRecibo/',$newNameFirma, 'public2');
+        $path = $file->storeAs('FirmaRecibo/',$newNameFirma, 'public2');
         // rutas donde se guardaron los archivos
         $pathSaveFirma=$pathSaveFirma.'/'.$newNameFirma;
         $pathSaveIne=$pathSaveIne.'/'.$newNameIne;
