@@ -205,7 +205,7 @@ class EnvioController extends Controller
         // guardando archivos y creando la ruta
         $pathOrIne = public_path('img/IneEntrega');
         $pathSaveIne = public_path('img/IneEntrega');
-        $pathSaveIne = explode('www',$pathSaveIne)[1];
+        $pathSaveIne = explode('gospaqueterias.com',$pathSaveIne)[1];
         
                 
         if (!file_exists($pathOrIne)) {
@@ -228,7 +228,7 @@ class EnvioController extends Controller
         // guardando archivos y creando la ruta
         $pathOrFirma = public_path('img/FirmaEntrega');
         $pathSaveFirma = public_path('img/FirmaEntrega');
-        $pathSaveFirma = explode('www',$pathSaveFirma)[1];
+        $pathSaveFirma = explode('gospaqueterias.com',$pathSaveFirma)[1];
                 
         if (!file_exists($pathOrFirma)) {
             mkdir($pathOrFirma, 666, true);
@@ -347,7 +347,7 @@ class EnvioController extends Controller
                 mkdir($pathOriginal, 666, true);
             }
             $rutaFinal=$pathOriginal."/".$request->guia."_".$i.".pdf";
-            $rutaFinal=explode("www",$rutaFinal)[1];
+            $rutaFinal=explode("gospaqueterias.com",$rutaFinal)[1];
             if (curl_getinfo($curl, CURLINFO_HTTP_CODE) == 200) {
                 $file = fopen($pathOriginal."/".$request->guia."_".$i.".pdf", "w");
                 fwrite($file, $result);
@@ -381,7 +381,7 @@ class EnvioController extends Controller
         $pdf = Pdf::loadView('pdf.envioPDF', $data);
         $rutapdf = public_path('pdf')."/".$envio->guia.'.pdf';
         $pdf->save($rutapdf);
-        $rutapdf=explode('www',$rutapdf)[1];
+        $rutapdf=explode('gospaqueterias.com',$rutapdf)[1];
         // terminando PDF
         $mensaje['guia']=$envio->guia;
         $mensaje['clave']=$envio->contrasena_entrega;
@@ -471,7 +471,7 @@ class EnvioController extends Controller
                 // guardando archivos y crenado la ruta
                 $pathOriginal = public_path('img/evidencia_recibo');
                 $pathSave = public_path('img/evidencia_recibo');
-                $pathSave = explode('www',$pathSave)[1];
+                $pathSave = explode('gospaqueterias.com',$pathSave)[1];
 
                 // $pathOr = explode('gospaqueterias',$pathOriginal,4);
                 $pathOr=$pathOriginal; 
@@ -594,7 +594,7 @@ class EnvioController extends Controller
         // guardando archivos y creando la ruta
         $pathOrIne = public_path('img/IneRecibo');
         $pathSaveIne = public_path('img/IneRecibo');
-        $pathSaveIne = explode('www',$pathSaveIne)[1];
+        $pathSaveIne = explode('gospaqueterias.com',$pathSaveIne)[1];
         
                 
         if (!file_exists($pathOrIne)) {
@@ -617,7 +617,7 @@ class EnvioController extends Controller
         // guardando archivos y creando la ruta
         $pathOrFirma = public_path('img/FirmaRecibo');
         $pathSaveFirma = public_path('img/FirmaRecibo');
-        $pathSaveFirma = explode('www',$pathSaveFirma)[1];
+        $pathSaveFirma = explode('gospaqueterias.com',$pathSaveFirma)[1];
                 
         if (!file_exists($pathOrFirma)) {
             mkdir($pathOrFirma, 666, true);
