@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Twilio\Rest\Client;
 
 class EnvioController extends Controller
 {
@@ -44,7 +45,7 @@ class EnvioController extends Controller
     public function create()
     {
         $sucursal=Auth::user()->sucursal;
-        return view('envio.crearEnvio',[
+        return view('envio.crearEnvio2',[
             'envios'=> Envio::get(),
             'sucursales'=> Sucursal::where('nombre','!=',$sucursal)->get(),
         ]);
@@ -205,8 +206,8 @@ class EnvioController extends Controller
         // guardando archivos y creando la ruta
         $pathOrIne = public_path('img/IneEntrega');
         $pathSaveIne = public_path('img/IneEntrega');
-        $pathSaveIne = explode('gospaqueterias.com',$pathSaveIne)[1];
-        
+        // $pathSaveIne = explode('gospaqueterias.com',$pathSaveIne)[1];
+        $pathSaveIne = explode('www',$pathSaveIne)[1];
                 
         if (!file_exists($pathOrIne)) {
             mkdir($pathOrIne, 666, true);
@@ -228,7 +229,8 @@ class EnvioController extends Controller
         // guardando archivos y creando la ruta
         $pathOrFirma = public_path('img/FirmaEntrega');
         $pathSaveFirma = public_path('img/FirmaEntrega');
-        $pathSaveFirma = explode('gospaqueterias.com',$pathSaveFirma)[1];
+        // $pathSaveFirma = explode('gospaqueterias.com',$pathSaveFirma)[1];
+        $pathSaveFirma = explode('www',$pathSaveFirma)[1];
                 
         if (!file_exists($pathOrFirma)) {
             mkdir($pathOrFirma, 666, true);
@@ -347,7 +349,8 @@ class EnvioController extends Controller
                 mkdir($pathOriginal, 666, true);
             }
             $rutaFinal=$pathOriginal."/".$request->guia."_".$i.".pdf";
-            $rutaFinal=explode("gospaqueterias.com",$rutaFinal)[1];
+            // $rutaFinal=explode("gospaqueterias.com",$rutaFinal)[1];
+            $rutaFinal=explode("www",$rutaFinal)[1];
             if (curl_getinfo($curl, CURLINFO_HTTP_CODE) == 200) {
                 $file = fopen($pathOriginal."/".$request->guia."_".$i.".pdf", "w");
                 fwrite($file, $result);
@@ -381,7 +384,8 @@ class EnvioController extends Controller
         $pdf = Pdf::loadView('pdf.envioPDF', $data);
         $rutapdf = public_path('pdf')."/".$envio->guia.'.pdf';
         $pdf->save($rutapdf);
-        $rutapdf=explode('gospaqueterias.com',$rutapdf)[1];
+        // $rutapdf=explode('gospaqueterias.com',$rutapdf)[1];
+        $rutapdf=explode('www',$rutapdf)[1];
         // terminando PDF
         $mensaje['guia']=$envio->guia;
         $mensaje['clave']=$envio->contrasena_entrega;
@@ -403,6 +407,35 @@ class EnvioController extends Controller
             'pdf'=>$rutapdf,
 
         ]);
+
+        // enviando mensaje de whatsapp
+
+
+        $sid    = "1";
+        $token  = "2";
+        $twilio = new Client($sid, $token);
+
+        $message = $twilio->messages
+        ->create("whatsapp:+5215529644454", // to
+            array(
+            "from" => "whatsapp:+14155238886",
+            "body" => "Hola te informamos que tu paquete ha sido recibido y esta en camino a ser entregado
+
+            Tu numero de guia es el siguiente: 123
+            
+            Podras recibirlo con la siguiente contrasena: 456
+            
+            Tambien te invitamos a dar seguimiento de tu paquete en la siguiente pagina:
+            https://gospaqueterias.com/rastrear
+            
+            En GOS Paqueterias te deseamos un excelente dia
+            
+            Saludos!"
+            )
+        );
+
+        print($message->sid);
+        // fin de mensaje de whatsapp
         return redirect()->route('listaEnvios')->with('status','El envio fue terminado con exito');
     }
 
@@ -471,9 +504,8 @@ class EnvioController extends Controller
                 // guardando archivos y crenado la ruta
                 $pathOriginal = public_path('img/evidencia_recibo');
                 $pathSave = public_path('img/evidencia_recibo');
-                $pathSave = explode('gospaqueterias.com',$pathSave)[1];
-
-                // $pathOr = explode('gospaqueterias',$pathOriginal,4);
+                // $pathSave = explode('gospaqueterias.com',$pathSave)[1];
+                $pathSave = explode('www',$pathSave)[1];
                 $pathOr=$pathOriginal; 
                 
                 if (!file_exists($pathOr)) {
@@ -594,7 +626,8 @@ class EnvioController extends Controller
         // guardando archivos y creando la ruta
         $pathOrIne = public_path('img/IneRecibo');
         $pathSaveIne = public_path('img/IneRecibo');
-        $pathSaveIne = explode('gospaqueterias.com',$pathSaveIne)[1];
+        // $pathSaveIne = explode('gospaqueterias.com',$pathSaveIne)[1];
+        $pathSaveIne = explode('www',$pathSaveIne)[1];
         
                 
         if (!file_exists($pathOrIne)) {
@@ -617,7 +650,8 @@ class EnvioController extends Controller
         // guardando archivos y creando la ruta
         $pathOrFirma = public_path('img/FirmaRecibo');
         $pathSaveFirma = public_path('img/FirmaRecibo');
-        $pathSaveFirma = explode('gospaqueterias.com',$pathSaveFirma)[1];
+        // $pathSaveFirma = explode('gospaqueterias.com',$pathSaveFirma)[1];
+        $pathSaveFirma = explode('www',$pathSaveFirma)[1];
                 
         if (!file_exists($pathOrFirma)) {
             mkdir($pathOrFirma, 666, true);
