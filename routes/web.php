@@ -63,8 +63,20 @@ Route::get('/listaEnvios',[App\Http\Controllers\EnvioController::class, 'index']
 Route::get('/envio/{envio}','App\Http\Controllers\EnvioController@show')->name('envio');
 Route::patch('/envio/editar/{envio}','App\Http\Controllers\EnvioController@update')->name('editarEnvio.update');
 Route::delete('/envio/{envio}','App\Http\Controllers\EnvioController@destroy')->name('envio.destroy');
+// unidades
+Route::get('/listaUnidades','App\Http\Controllers\EnvioController@listaUnidades')->name('listaUnidades');
+Route::get('/listaEnviosUnidad','App\Http\Controllers\EnvioController@listaEnviosUnidad')->name('listaEnviosUnidad');
+
+
+// Creacion de archivo excel
+Route::post('/exportarExcel',[App\Http\Controllers\EnvioController::class, 'createExcel'])->name('exportarExcel');
+
+
+
+
 // entregas
 Route::get('/listaEntrega','App\Http\Controllers\EnvioController@listaEntrega')->name('listaEntrega');
+Route::post('/listaEntrega','App\Http\Controllers\EnvioController@listaEntregaFecha')->name('listaEntrega');
 Route::get('/listaEntregaSucursal','App\Http\Controllers\EnvioController@listaEntregaSucursal')->name('listaEntregaSucursal');
 Route::get('/entrega/{envio}','App\Http\Controllers\EnvioController@entrega')->name('entrega');
 Route::post('/procesarEntrega/{envio}','App\Http\Controllers\EnvioController@procesarEntrega')->name('procesarEntrega');

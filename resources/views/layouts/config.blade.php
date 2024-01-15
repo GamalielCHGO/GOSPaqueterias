@@ -60,6 +60,16 @@
     <link rel="stylesheet" type="text/css" href="/public/files/bower_components/bootstrap-multiselect/dist/css/bootstrap-multiselect.css" />
     <link rel="stylesheet" type="text/css" href="/public/files/bower_components/multiselect/css/multi-select.css" />
 
+
+    <!-- Date-time picker css -->
+    <link rel="stylesheet" type="text/css" href="/public/files/assets/pages/advance-elements/css/bootstrap-datetimepicker.css">
+    <!-- Date-range picker css  -->
+    <link rel="stylesheet" type="text/css" href="/public/files/bower_components/bootstrap-daterangepicker/daterangepicker.css" />
+    <!-- Date-Dropper css -->
+    <link rel="stylesheet" type="text/css" href="/public/files/bower_components/datedropper/datedropper.min.css" />
+
+
+
     <!-- animation nifty modal window effects css -->
     <link rel="stylesheet" type="text/css" href="/public/files/assets/css/component.css">
 
@@ -319,9 +329,9 @@
                                                 <span class="pcoded-mtext">Reporte de envios</span>
                                             </a>
                                         </li>
-                                        <li class="{{ request()->routeIs('listaEntregaSucursal') ? 'active' : '' }}">
-                                            <a href="{{route('listaEntregaSucursal')}}">
-                                                <span class="pcoded-mtext">Reporte de ingresos</span>
+                                        <li class="{{ request()->routeIs('listaUnidades') ? 'active' : '' }}">
+                                            <a href="{{route('listaUnidades')}}">
+                                                <span class="pcoded-mtext">Reporte de unidades</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -481,6 +491,20 @@
     <script src="/public/files/assets/pages/filer/custom-filer.js" type="text/javascript"></script>
     <script src="/public/files/assets/pages/filer/jquery.fileuploads.init.js" type="text/javascript"></script>
         
+
+    <!-- Bootstrap date-time-picker js -->
+    <script type="text/javascript" src="/public/files/assets/pages/advance-elements/moment-with-locales.min.js"></script>
+    <script type="text/javascript"
+        src="/public/files/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript"
+        src="/public/files/assets/pages/advance-elements/bootstrap-datetimepicker.min.js"></script>
+    <!-- Date-range picker js -->
+    <script type="text/javascript"
+        src="/public/files/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- Date-dropper js -->
+    <script type="text/javascript" src="/public/files/bower_components/datedropper/datedropper.min.js"></script>
+
+    <script type="text/javascript" src="/public/files/assets/pages/advance-elements/custom-picker.js"></script>
 
     <!-- data-table js -->
     <script src="/public/files/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>

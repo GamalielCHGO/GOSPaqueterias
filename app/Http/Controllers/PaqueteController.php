@@ -60,10 +60,10 @@ class PaqueteController extends Controller
                 $newName=$name."_".$counter.$clave.".".$ext;
                 
                 // guardando archivos y crenado la ruta
-                $pathOriginal = public_path('img\evidencia');
-                $pathSave = public_path('img\evidencia');
-                $pathSave = explode('public_html',$pathSave)[1];
-                // $pathSave = explode('www',$pathSave)[1];
+                $pathOriginal = public_path('img/evidencia');
+                $pathSave = public_path('img/evidencia');
+                // $pathSave = explode('public_html',$pathSave)[1];
+                $pathSave = explode('www',$pathSave)[1];
 
                 // $pathOr = explode('gospaqueterias',$pathOriginal,4);
                 $pathOr=$pathOriginal; 

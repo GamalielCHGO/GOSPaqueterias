@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\EnviosExport;
 use App\Mail\PaqueteRecibido;
 use App\Models\Costo;
 use App\Models\Envio;
@@ -16,7 +17,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 use Twilio\Rest\Client;
+
 
 class EnvioController extends Controller
 {
@@ -72,12 +75,12 @@ class EnvioController extends Controller
         request()->validate([
             'nombre_remitente'=>'required', 
             'direccion_remitente'=>'required',
-            'telefono_remitente'=>'required',
+            'telefono_remitente'=>'required|string|size:10',
             'correo'=>'required',
             'rfc'=>'required',
             'nombre_destino'=>'required',
             'correo_destino'=>'required',
-            'telefono_destino'=>'required',
+            'telefono_destino'=>'required|string|size:10',
             'direccion_destino'=>'required',
             'sucursal_destino'=>'required',
         ]);
@@ -172,6 +175,27 @@ class EnvioController extends Controller
             return redirect()->route('listaEnvios')->with('status','El envio fue actualizado con exito');
     }
 
+    public function listaUnidades()
+    {
+        $unidades=DB::table('envios')
+        ->selectRaw('id_transporte, fecha_envio , sucursal_origen,sucursal_destino, count(guia) as envios, sum(total) as total, sum(cantidad) as paquetes')
+        ->groupByRaw('id_transporte, fecha_envio, sucursal_origen,sucursal_destino')
+        ->get();
+        return view('envio.listaUnidades',[
+            'unidades'=> $unidades,
+            ]);
+    }
+
+    public function listaEnviosUnidad()
+    {
+        return view('envio.listaEnviosUnidad',[
+            'envios'=> Envio::where('id_transporte',request()->id_transporte)->get(),
+            'transporte'=> request()->id_transporte,
+        ]);
+    }
+
+    
+
     /**
      * Remove the specified resource from storage.
      *
@@ -229,8 +253,8 @@ class EnvioController extends Controller
         // guardando archivos y creando la ruta
         $pathOrFirma = public_path('img/FirmaEntrega');
         $pathSaveFirma = public_path('img/FirmaEntrega');
-        $pathSaveFirma = explode('public_html',$pathSaveFirma)[1];
-        // $pathSaveFirma = explode('www',$pathSaveFirma)[1];
+        // $pathSaveFirma = explode('public_html',$pathSaveFirma)[1];
+        $pathSaveFirma = explode('www',$pathSaveFirma)[1];
                 
         if (!file_exists($pathOrFirma)) {
             mkdir($pathOrFirma, 666, true);
@@ -331,7 +355,7 @@ class EnvioController extends Controller
                 ^FO90,800^BC^FD".$request->guia."^FS
                 ^XZ";
 
-                $zpl=$inicio.$zpl;
+                $zpl=$inicio.$zpl; 
                 $zplFinal.=$zpl;
                 $zpl="";
             }
@@ -589,11 +613,57 @@ class EnvioController extends Controller
     }
 
     public function listaEntrega(){
+        $fechaF=date('y-m-d');
+        $fechaI=date('y-m-d');
+
+        $paqueteTotal=Envio::where('sucursal_origen',$sucursal=Auth::user()->sucursal)
+        ->whereBetween('fecha_recibo',[$fechaF." 00:00:00",$fechaI." 23:59:59"])
+        ->sum('cantidad');
+
+        $sumaTotal=Envio::where('sucursal_origen',$sucursal=Auth::user()->sucursal)
+        ->whereBetween('fecha_recibo',[$fechaF." 00:00:00",$fechaI." 23:59:59"])
+        ->sum('total');
+
         return view('envio.listaEntrega',[
-            'envios'=> Envio::where('estado','EE')->where('sucursal_destino',$sucursal=Auth::user()->sucursal)->get(),
-            'titulo'=>'Lista entrega sucursal',
+            'envios'=> Envio::where('sucursal_origen',$sucursal=Auth::user()->sucursal)
+            ->whereBetween('fecha_recibo',[$fechaF." 00:00:00",$fechaI." 23:59:59"])
+            ->get(),
+            'titulo'=>'Lista envios '.$sucursal=Auth::user()->sucursal,
+            'totalPaquetes'=>$paqueteTotal,
+            'sumaPaquetes'=>$sumaTotal,
         ],);
     }
+
+    public function listaEntregaFecha(){
+        $request=request();
+        $request=str_replace(' ','',$request->daterange);
+        $vector=explode('-',$request);
+        $fechaFO=$vector[0];
+        $fechaIO=$vector[1];
+        $fechaFV=explode('/',$fechaFO);
+        $fechaIV=explode('/',$fechaIO);
+        $fechaF=$fechaFV['2'].'-'.$fechaFV['0'].'-'.$fechaFV['1'];
+        $fechaI=$fechaIV['2'].'-'.$fechaIV['0'].'-'.$fechaIV['1'];
+
+        $paqueteTotal=Envio::where('sucursal_origen',$sucursal=Auth::user()->sucursal)
+        ->whereBetween('fecha_recibo',[$fechaF." 00:00:00",$fechaI." 23:59:59"])
+        ->sum('cantidad');
+
+        $sumaTotal=Envio::where('sucursal_origen',$sucursal=Auth::user()->sucursal)
+        ->whereBetween('fecha_recibo',[$fechaF." 00:00:00",$fechaI." 23:59:59"])
+        ->sum('total');
+
+        return view('envio.listaEntrega',[
+            'envios'=> Envio::where('sucursal_origen',$sucursal=Auth::user()->sucursal)
+            ->whereBetween('fecha_recibo',[$fechaF." 00:00:00",$fechaI." 23:59:59"])
+            ->get(),
+            'titulo'=>'Lista envios '.$sucursal=Auth::user()->sucursal,
+            'totalPaquetes'=>$paqueteTotal,
+            'sumaPaquetes'=>$sumaTotal,
+        ],);
+    }
+
+  
 
     public function listaEntregaSucursal(){
         return view('envio.listaEntrega',[
@@ -650,8 +720,8 @@ class EnvioController extends Controller
         // guardando archivos y creando la ruta
         $pathOrFirma = public_path('img/FirmaRecibo');
         $pathSaveFirma = public_path('img/FirmaRecibo');
-        $pathSaveFirma = explode('public_html',$pathSaveFirma)[1];
-        // $pathSaveFirma = explode('www',$pathSaveFirma)[1];
+        // $pathSaveFirma = explode('public_html',$pathSaveFirma)[1];
+        $pathSaveFirma = explode('www',$pathSaveFirma)[1];
                 
         if (!file_exists($pathOrFirma)) {
             mkdir($pathOrFirma, 666, true);
@@ -670,6 +740,24 @@ class EnvioController extends Controller
             'fecha_entrega'=>DB::raw('NOW()'),
         ]);
         return redirect()->route('listaEnvios')->with('status','El envio fue terminado con exito');
+    }
+
+
+    public function createExcel()
+    {
+        $envios=json_decode(request()->envios,true);
+        $enviosArray=[];
+        foreach ($envios as $envio) {
+            $enviosArray[]=$envio['id'];
+        }
+       
+        $userId=Auth::user()->id;
+        
+        $collection = collect ($envios);
+
+        $collection->values()->all();
+
+        return Excel::download(new EnviosExport($enviosArray), 'export.xlsx');
     }
     
     

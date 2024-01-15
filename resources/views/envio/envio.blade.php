@@ -476,7 +476,10 @@
         sigText.innerHTML = "Data URL for your signature will go here!";
         sigImage.setAttribute("src", "");
       }, false);
+
       submitBtn.addEventListener("click", function(e) {
+        // desactivar el boton
+        submitBtn.disabled = true;
     
         var image = canvas.toDataURL();  // here is the most important part because if you dont replace you will get a DOM 18 exception.
     
