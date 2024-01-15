@@ -253,8 +253,8 @@ class EnvioController extends Controller
         // guardando archivos y creando la ruta
         $pathOrFirma = public_path('img/FirmaEntrega');
         $pathSaveFirma = public_path('img/FirmaEntrega');
-        // $pathSaveFirma = explode('public_html',$pathSaveFirma)[1];
-        $pathSaveFirma = explode('www',$pathSaveFirma)[1];
+        $pathSaveFirma = explode('public_html',$pathSaveFirma)[1];
+        // $pathSaveFirma = explode('www',$pathSaveFirma)[1];
                 
         if (!file_exists($pathOrFirma)) {
             mkdir($pathOrFirma, 666, true);
@@ -666,9 +666,16 @@ class EnvioController extends Controller
   
 
     public function listaEntregaSucursal(){
-        return view('envio.listaEntrega',[
+        return view('envio.listaEntregaSucursal',[
             'envios'=> Envio::where('estado','ER')->where('sucursal_destino',$sucursal=Auth::user()->sucursal)->get(),
             'titulo'=>'Lista entrega Domicilio',
+        ]);
+    }
+
+    public function listaEntregaocurre(){
+        return view('envio.listaEntregaSucursal',[
+            'envios'=> Envio::where('estado','EE')->where('sucursal_destino',$sucursal=Auth::user()->sucursal)->get(),
+            'titulo'=>'Lista entrega Ocurre',
         ]);
     }
 
@@ -720,8 +727,8 @@ class EnvioController extends Controller
         // guardando archivos y creando la ruta
         $pathOrFirma = public_path('img/FirmaRecibo');
         $pathSaveFirma = public_path('img/FirmaRecibo');
-        // $pathSaveFirma = explode('public_html',$pathSaveFirma)[1];
-        $pathSaveFirma = explode('www',$pathSaveFirma)[1];
+        $pathSaveFirma = explode('public_html',$pathSaveFirma)[1];
+        // $pathSaveFirma = explode('www',$pathSaveFirma)[1];
                 
         if (!file_exists($pathOrFirma)) {
             mkdir($pathOrFirma, 666, true);
